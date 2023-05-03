@@ -3,6 +3,7 @@ using Labb_4___API.Models;
 using Labb_4___API.Services;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace Labb_4___API
 {
     public class Program
@@ -13,6 +14,11 @@ namespace Labb_4___API
 
             // Add services to the container.
 
+
+
+            builder.Services.AddControllers().AddNewtonsoftJson(options => options
+            .SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -22,6 +28,8 @@ namespace Labb_4___API
             options.UseSqlServer(builder.Configuration.GetConnectionString("Connection")));
 
             builder.Services.AddScoped<IAppRepository<Person>, PersonRepository>();
+            builder.Services.AddScoped<IAppRepository<Link>, LinkRepository>();
+
 
             var app = builder.Build();
 

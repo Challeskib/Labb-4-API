@@ -35,6 +35,7 @@ namespace Labb_4___API.Controllers
             try
             {
                 var result = await _context.GetSingle(id);
+               
                 if (result == null)
                 {
                     return NotFound();
@@ -45,9 +46,6 @@ namespace Labb_4___API.Controllers
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error to get Person and their interests");
             }
-            
-            
-
         }
 
         

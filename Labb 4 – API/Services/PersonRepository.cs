@@ -20,7 +20,7 @@ namespace Labb_4___API.Services
 
         public async Task<Person> GetSingle(int id)
         {
-            return await _context.Persons/*.Include(p => p.Hobbys)*/.FirstOrDefaultAsync(p => p.Id == id);
+            return await _context.Persons.Include(p => p.Hobbys).FirstOrDefaultAsync(p => p.Id == id);
         }
 
         public Task<Person> Add(Person obj)

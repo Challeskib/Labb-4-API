@@ -1,5 +1,9 @@
-﻿namespace Labb_4___API.Models
+﻿using System.Text.Json.Serialization;
+
+namespace Labb_4___API.Models
+    
 {
+    [Serializable]
     public class Person
     {
         public int Id { get; set; }
