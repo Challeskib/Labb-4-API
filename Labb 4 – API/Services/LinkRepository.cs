@@ -13,10 +13,12 @@ namespace Labb_4___API.Services
             _dataContext = dataContext;
         }
 
+        
 
         public async Task<IEnumerable<Link>> GetAll()
         {
             return await _dataContext.Links.ToListAsync();
+            
         }
 
         public async Task<Link> GetSingle(int id)
@@ -25,9 +27,9 @@ namespace Labb_4___API.Services
                  .FirstOrDefaultAsync(p => p.Id == id);
         }
 
-        public async Task<Link> Add(Link obj)
+        public Task<Link> Add(Link obj)
         {
-            return await _dataContext.Add(obj);
+            throw new NotImplementedException();
         }
 
         public Task<Link> Delete(int id)

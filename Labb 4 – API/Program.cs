@@ -29,6 +29,8 @@ namespace Labb_4___API
 
             builder.Services.AddScoped<IAppRepository<Person>, PersonRepository>();
             builder.Services.AddScoped<IAppRepository<Link>, LinkRepository>();
+            builder.Services.AddScoped<IAppRepository<Hobby>, HobbyRepository>();
+
 
 
             var app = builder.Build();

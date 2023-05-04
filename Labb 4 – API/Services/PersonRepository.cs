@@ -23,9 +23,18 @@ namespace Labb_4___API.Services
             return await _context.Persons.Include(p => p.Hobbys).FirstOrDefaultAsync(p => p.Id == id);
         }
 
-        public Task<Person> Add(Person obj)
+        public Task<Person> Update(Person obj)
         {
             throw new NotImplementedException();
+
+        }
+
+        public Task<Person> Add(Person obj)
+        {
+
+            throw new NotImplementedException();
+
+
         }
 
         public Task<Person> Delete(int id)
@@ -37,10 +46,7 @@ namespace Labb_4___API.Services
 
        
 
-        public Task<Person> Update(Person obj)
-        {
-            throw new NotImplementedException();
-        }
+      
 
         
     }

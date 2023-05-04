@@ -1,5 +1,6 @@
 ﻿using Labb_4___API.Data;
 using Labb_4___API.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Labb_4___API.Services
 {
@@ -12,14 +13,17 @@ namespace Labb_4___API.Services
             _context = dataContext;
         }
 
-        public Task<Hobby> GetSingle(int id)
+        public async Task<Hobby> GetSingle(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Hobbys.Include(h => h.Persons)
+                .FirstOrDefaultAsync(h => h.Id == id);
         }
 
-        public Task<Hobby> Add(Hobby obj)
+        public async Task<Hobby> Add(Hobby obj)
         {
-            throw new NotImplementedException();
+            var result = await _context.Hobbys.AddAsync(obj);
+            await _context.SaveChangesAsync();
+            return result.Entity;
         }
 
         public Task<Hobby> Delete(int id)
