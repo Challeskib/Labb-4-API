@@ -11,7 +11,7 @@ namespace Labb_4___API.Models
 
         [JsonIgnore]
         public ICollection<Person>? Persons { get; set; }
-
+        [JsonIgnore]
         public ICollection<Link>? Links { get; set; }
 
     }

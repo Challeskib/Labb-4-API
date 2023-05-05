@@ -10,10 +10,10 @@ namespace Labb_4___API.Models
 
         public int HobbyId { get; set; }
         [JsonIgnore]
-        public Hobby Hobby { get; set; }
+        public Hobby? Hobby { get; set; }
         public int PersonId { get; set; }
         [JsonIgnore]
-        public Person Person { get; set; }
+        public Person? Person { get; set; }
         
 
     }

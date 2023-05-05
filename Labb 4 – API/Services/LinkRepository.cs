@@ -7,30 +7,50 @@ namespace Labb_4___API.Services
 
     public class LinkRepository : IAppRepository<Link>
     {
-        private readonly DataContext _dataContext;
+        private readonly DataContext _context;
         public LinkRepository(DataContext dataContext)
         {
-            _dataContext = dataContext;
+            _context = dataContext;
         }
 
         
 
         public async Task<IEnumerable<Link>> GetAll()
         {
-            return await _dataContext.Links.ToListAsync();
-            
+            return await _context.Links.ToListAsync();
         }
 
         public async Task<Link> GetSingle(int id)
         {
-            return await _dataContext.Links.Include(l => l.PersonId)
-                 .FirstOrDefaultAsync(p => p.Id == id);
+            return await _context.Links.FirstOrDefaultAsync(p => p.Id == id);
         }
 
-        public Task<Link> Add(Link obj)
+        public async Task<Link> Add(Link obj)
         {
-            throw new NotImplementedException();
+            var result = await _context.Links.AddAsync(obj);
+            await _context.SaveChangesAsync();
+            return result.Entity;
         }
+
+        //public async Task<CreateLinkDto> Add(CreateLinkDto request)
+        //{
+        //    var person = await _context.Persons.FindAsync(request.PersonId);
+
+        //    var newLink = new Link
+        //    {
+        //        Url = request.Url,
+        //        HobbyId = request.HobbyId,
+        //        Person = person
+        //    };
+        //    _context.Links.Add(newLink);
+        //    await _context.SaveChangesAsync();
+
+        //    return newLink;
+
+
+
+
+        //}
 
         public Task<Link> Delete(int id)
         {
@@ -42,5 +62,10 @@ namespace Labb_4___API.Services
         {
             throw new NotImplementedException();
         }
+
+        
+
+        
+
     }
 }

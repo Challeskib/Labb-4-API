@@ -10,10 +10,22 @@ namespace Labb_4___API.Controllers
     [ApiController]
     public class PersonHobbyController : ControllerBase
     {
+
         private readonly DataContext _context;
         public PersonHobbyController(DataContext context)
         {
             _context = context;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<List<Person>>> Get(int id)
+        {
+            var persons = await _context.Persons
+                .Where(p => p.Id == id)
+                .Include(p => p.Hobbys)
+                .ToListAsync();
+            return Ok(persons);
+
         }
 
         [HttpPost("hobby")]
@@ -37,7 +49,6 @@ namespace Labb_4___API.Controllers
             person.Hobbys.Add(hobby);
             await _context.SaveChangesAsync();
             return person;
-
 
         }
 

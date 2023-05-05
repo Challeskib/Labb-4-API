@@ -15,7 +15,19 @@ namespace Labb_4___API.Services
 
         public async Task<IEnumerable<Person>> GetAll()
         {
-            return await _context.Persons.ToListAsync();
+            var persons = await _context.Persons
+        .Select(p => new { p.Id, p.Name, p.Phone })
+        .ToListAsync();
+
+            return persons.Select(p => new Person
+            {
+                Id = p.Id,
+                Name = p.Name,
+                Phone = p.Phone
+            });
+
+
+            //return await _context.Persons.ToListAsync();
         }
 
         public async Task<Person> GetSingle(int id)
@@ -42,12 +54,12 @@ namespace Labb_4___API.Services
             throw new NotImplementedException();
         }
 
-        
 
-       
 
-      
 
-        
+
+
+
+
     }
 }
